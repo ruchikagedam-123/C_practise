@@ -79,3 +79,14 @@ int main()
         fclose(fptr);
         return 0;
 }
+
+
+Output :
+
+Enter File Name  :Ruchika.txt
+Search : at
+at found at index 19 
+at found at index 22 
+at found at index 25 
+at found at index 46 
+at found at 4 times in a String.
