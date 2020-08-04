@@ -1,0 +1,81 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define MAX_SIZE 100
+
+
+int main()
+{
+        const char search[MAX_SIZE];
+        int i=0,j=0,k=0;
+        int index[MAX_SIZE];
+        char stringArray[MAX_SIZE];
+        char fileName[MAX_SIZE];
+        FILE *fptr;
+        int strLen,wordLen;
+        int found=0,count_string=0;
+
+        //Reading File Name
+        printf("Enter File Name  :");
+        scanf("%s",fileName);
+
+      //Receiving String to search from file
+        printf("Search : ");
+        scanf("%s",search);
+
+        //FileOpening
+        fptr = fopen(fileName,"r");
+
+        if(fptr == NULL)
+        {
+                printf("Unable to open file.");
+                exit(1);
+        }
+        else
+        {
+                while(1)
+                {
+                        stringArray[i] = fgetc(fptr);
+
+                        //printf("%c\t %d \n",stringArray[i],i);
+                        if(stringArray[i] == EOF)
+                        {
+                                break;
+                        }
+                        i++;
+
+                }
+
+
+        }
+
+      
+      //printf("%s \t %d \t %d",stringArray,strlen(search),strlen(stringArray));
+
+        strLen = strlen(stringArray);
+        wordLen = strlen(search);
+
+        for(j=0 ; j<strLen - wordLen; j++)
+        {
+                found = 1;
+                for(k=0 ; k<wordLen ; k++)
+                {
+                        if(stringArray[j+k] != search[k])
+                        {
+                                found = 0;
+                                break;
+                        }
+                }
+
+                  if(found == 1)
+                  {
+                        count_string++;
+                        printf("%s found at index %d \n",search,j);
+                  }
+        }
+
+        printf("%s found at \t %d times in a String.",search, count_string);
+
+        fclose(fptr);
+        return 0;
+}
